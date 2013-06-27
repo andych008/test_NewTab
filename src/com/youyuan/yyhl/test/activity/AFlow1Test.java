@@ -1,6 +1,8 @@
 package com.youyuan.yyhl.test.activity;
 
+import org.apache.log4j.Logger;
 import org.athrun.android.framework.AthrunTestCase;
+import org.athrun.android.framework.LogConfigure;
 import org.athrun.android.framework.Test;
 import org.athrun.android.framework.viewelement.ViewElement;
 import org.athrun.android.framework.webview.By;
@@ -12,6 +14,7 @@ import android.util.Log;
 
 public class AFlow1Test extends AthrunTestCase {
 
+	private final Logger logger = LogConfigure.getLogger(getClass());
 	private static final int TIMEOUT_PAGE_NET = 15000;
 	private static final int TIMEOUT_API = 10000;
 	private static final String LOG_TAG = "AFlow1Test";
