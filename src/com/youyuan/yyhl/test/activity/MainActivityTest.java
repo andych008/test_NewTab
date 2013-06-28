@@ -2,6 +2,7 @@ package com.youyuan.yyhl.test.activity;
 
 import org.athrun.android.framework.AthrunTestCase;
 import org.athrun.android.framework.Test;
+import org.athrun.android.framework.viewelement.TextViewElement;
 import org.athrun.android.framework.webview.By;
 import org.athrun.android.framework.webview.WebElement;
 import org.athrun.android.framework.webview.WebViewElement;
@@ -17,13 +18,32 @@ public class MainActivityTest extends AthrunTestCase {
 		AthrunTestCase.setMaxTimeToFindView(10000);
 	}
 
+	private void doLogin(TextViewElement editUser, TextViewElement editPw) throws Exception {
+		
+		editUser.inputText("101639608");
+		editPw.inputText("409144");
+		
+		findElementById("LoginBtn").doClick();
+		assertEquals(true, waitForText("登录成功", 10000));
+		Thread.sleep(5000);//必须加，不然退出后进行下一个testCase会有问题，不知道为什么
+
+	}
+	
 	@Test
 	public void testGetCurrentActivityName() throws Exception {
 		String curActivityName = null;
 		
 		//-----------1. 登录------------------
-		findElementById("LoginBtn").doClick();
-		assertEquals(true, waitForText("登录成功", 10000));
+		TextViewElement editUser = findElementById("UserName",
+				TextViewElement.class);
+		
+		TextViewElement editPw = findElementById("Password",
+				TextViewElement.class);
+		
+		editUser.clearText();
+		editPw.clearText();
+		doLogin(editUser, editPw);
+
 
         
 //        //-----------2. 当前处于缘份tab------------------
